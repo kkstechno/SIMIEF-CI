@@ -8,11 +8,32 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
 
-<?php
+
+
+
+    <?php
 // Inclure l'en-tête
 include('header.php');
 include('slider.php');
+
+// Récupérer le segment d'URL correspondant à la page demandée
+$page_segment = $_SERVER['REQUEST_URI'];
+
+// Supprimer les slashs de début et de fin du segment d'URL
+$page_segment = trim($page_segment, '/');
+
+// Charger la page correspondante en fonction du segment d'URL
+$page_path = 'pages/' . $page_segment . '.php';
+if (file_exists($page_path)) {
+    include($page_path);
+} else {
+    // Si la page demandée n'existe pas, vous pouvez afficher une page par défaut ou une page d'erreur.
+    include('pages/404.php');
+}
 ?>
+
+
+
 
 
 
@@ -309,6 +330,38 @@ include('slider.php');
     </div>
     <!-- Testimonial End -->
 
+
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                <h6 class="text-primary">Nos Partenaires</h6>
+                <h1 class="mb-4">Ils nous font confiance !</h1>
+            </div>
+            <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+                <div class="testimonial-item text-center">
+                    <div class="testimonial-img position-relative">
+                        <img class="img-fluid mx-auto mb-5" src="img/logo/ciprel.jpg">
+                    </div>
+                </div>
+                <div class="testimonial-item text-center">
+                    <div class="testimonial-img position-relative">
+                        <img class="img-fluid mx-auto mb-5" src="img/logo/cie1.png">
+                    </div>
+                </div>
+                <div class="testimonial-item text-center">
+                    <div class="testimonial-img position-relative">
+                        <img class="img-fluid mx-auto mb-5" src="img/logo/impot.png">
+                    </div>
+                </div>
+                <div class="testimonial-item text-center">
+                    <div class="testimonial-img position-relative">
+                        <img class="img-fluid mx-auto mb-5" src="img/logo/SODECI.jpg">
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div> 
 
     <?php
     // Inclure le pied-de-page
